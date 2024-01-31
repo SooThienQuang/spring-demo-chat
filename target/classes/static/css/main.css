@@ -139,7 +139,7 @@ button.accent {
 }
 
 .chat-container {
-    max-width: 700px;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
     background-color: #fff;
@@ -217,7 +217,6 @@ button.accent {
 #chat-page .chat-message p {
     color: #43464b;
 }
-
 #messageForm .input-group input {
     float: left;
     width: calc(100% - 85px);
@@ -236,10 +235,10 @@ button.accent {
     border-bottom: 1px solid #ececec;
 }
 
-.chat-header h2 {
-    margin: 0;
-    font-weight: 500;
-}
+/*.chat-header h2 {*/
+/*    margin: 0;*/
+/*    font-weight: 500;*/
+/*}*/
 
 .connecting {
     padding-top: 5px;
@@ -295,4 +294,13 @@ button.accent {
     .chat-header h2 {
         font-size: 1.1em;
     }
+}
+.iconClass{
+    position: relative;
+}
+.iconClass span{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    display: block;
 }

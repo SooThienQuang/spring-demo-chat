@@ -7,6 +7,8 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Controller;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by rajeevkumarsingh on 24/07/17.
  */
@@ -40,4 +42,11 @@ public class ChatController {
         return chatMessage;
     }
 
+    @MessageMapping("/chat.typing")
+    @SendTo("/topic/public")
+    public ChatMessage onTyping(@Payload ChatMessage chatMessage,SimpMessageHeaderAccessor headerAccessor
+                              ) {
+        chatMessage.setType(ChatMessage.MessageType.TYPING);
+        return chatMessage;
+    }
 }

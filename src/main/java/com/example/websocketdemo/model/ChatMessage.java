@@ -13,7 +13,8 @@ public class ChatMessage {
         CHAT,
         JOIN,
         LEAVE,
-        REJECT
+        REJECT,
+        TYPING
     }
 
     public MessageType getType() {

@@ -4,6 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>Nguyễn Thiện Quang</title>
     <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
 <noscript>
@@ -12,10 +14,10 @@
 
 <div id="username-page">
     <div class="username-page-container">
-        <h1 class="title">Type your username</h1>
+        <h1 class="title">Nhập vào tên của bạn </h1>
         <form id="usernameForm" name="usernameForm">
             <div class="form-group">
-                <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />
+                <input type="text" id="name" placeholder="Họ và tên" autocomplete="off" class="form-control" />
             </div>
             <div class="form-group">
                 <button type="submit" class="accent username-submit">Start Chatting</button>
@@ -27,7 +29,21 @@
 <div id="chat-page" class="hidden">
     <div class="chat-container">
         <div class="chat-header">
-            <h2>Spring WebSocket Chat Demo</h2>
+            <div class="row">
+                <div class="col-md-10">
+                    <h2>Kênh tin nhắn nội bộ </h2>
+                </div>
+                <div class="col-md-2">
+                    <li class="nav-item" style="width: 40px; max-height: 50px">
+                        <a href="#" class="nav-link nav-icon iconClass">
+                            <i class="fas fa-bell" ></i>
+                            <span class="badge badge-light" id="numberNotify">0</span>
+                        </a>
+                    </li>
+                </div>
+            </div>
+
+
         </div>
         <div class="connecting">
             Connecting...
@@ -35,14 +51,18 @@
         <ul id="messageArea">
 
         </ul>
+
         <form id="messageForm" name="messageForm" nameForm="messageForm">
             <div class="form-group">
                 <div class="input-group clearfix">
-                    <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
-                    <button type="submit" class="primary">Send</button>
+                    <input type="text" id="message" placeholder="Nhập gì đó..." autocomplete="off" class="form-control" oninput="sendTyping()"/>
+                    <button type="submit" class="primary">Gửi</button>
                 </div>
             </div>
         </form>
+        <span id="typingMessage" style="display: none;color: #128ff2;"></span>
+        <button id="sendButton" style="display: none;" onclick="sendMessage()">Send Message</button>
+
     </div>
 </div>
 

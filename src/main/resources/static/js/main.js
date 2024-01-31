@@ -35,12 +35,12 @@ function connect(event) {
 function onConnected() {
     // Subscribe to the Public Topic
     stompClient.subscribe('/topic/public', onMessageReceived);
-
     // Tell your username to the server
     stompClient.send("/app/chat.addUser",
         {},
         JSON.stringify({sender: username, type: 'JOIN'})
     )
+
 
     connectingElement.classList.add('hidden');
 }
@@ -71,16 +71,34 @@ function sendMessage(event) {
 
 function onMessageReceived(payload) {
     var message = JSON.parse(payload.body);
-
+    var number=document.getElementById("numberNotify").innerHTML;
     var messageElement = document.createElement('li');
-
     if(message.type === 'JOIN') {
         messageElement.classList.add('event-message');
-        message.content = message.sender + ' joined!';
+        message.content = message.sender + ' tham gia!';
     } else if (message.type === 'LEAVE') {
         messageElement.classList.add('event-message');
-        message.content = message.sender + ' left!';
-    } else {
+        message.content = message.sender + ' rời đi!';
+    } else if(message.type==='TYPING')
+    {
+        var message = JSON.parse(payload.body);
+        var typingMessage = document.getElementById("typingMessage");
+        typingMessage.innerHTML=message.sender+' đang soạn tin...';
+        // Show the typing message
+        typingMessage.style.display = "block";
+
+        // Clear the previous typing timer
+        clearTimeout(typingTimer);
+
+        // Set a new typing timer
+        typingTimer = setTimeout(function() {
+            // Hide the typing message when typing stops
+            typingMessage.style.display = "none";
+        }, doneTypingInterval);
+        return;
+    }
+    else {
+        number++;
         messageElement.classList.add('chat-message');
 
         var avatarElement = document.createElement('i');
@@ -94,11 +112,24 @@ function onMessageReceived(payload) {
         var usernameText = document.createTextNode(message.sender);
         usernameElement.appendChild(usernameText);
         messageElement.appendChild(usernameElement);
+
+
     }
+
+
+    document.getElementById("numberNotify").innerHTML=number;
+
 
     var textElement = document.createElement('p');
     var messageText = document.createTextNode(message.content);
     textElement.appendChild(messageText);
+
+    // var usernameElement1 = document.createElement('a');
+    // usernameElement1.style['color']='red';
+    // usernameElement1.style['marginLeft']='20px';
+    // var usernameText1 = document.createTextNode("xoá");
+    // usernameElement1.appendChild(usernameText1);
+    // textElement.appendChild(usernameElement1);
 
     messageElement.appendChild(textElement);
 
@@ -119,3 +150,14 @@ function getAvatarColor(messageSender) {
 
 usernameForm.addEventListener('submit', connect, true)
 messageForm.addEventListener('submit', sendMessage, true)
+
+
+//typing
+var typingTimer; // Timer identifier
+var doneTypingInterval = 1000; // Time in milliseconds (1 second)
+function sendTyping() {
+    stompClient.send("/app/chat.typing",
+        {},
+        JSON.stringify({sender: username, type: 'JOIN'})
+    )
+}
