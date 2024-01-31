@@ -25,18 +25,18 @@ public class ChatController {
                                SimpMessageHeaderAccessor headerAccessor) {
         // Add username in web socket session
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
-        if(chatMessage.getSender().equals("quang")||chatMessage.getSender().equals("thong"))
-        {
-            if(!chatMessage.getPassword().equals("123"))
-            {
-                chatMessage.setType(ChatMessage.MessageType.REJECT);
-                chatMessage.setSender("Tài khoản hoặc mật khẩu không chính xác!!");
-            }
-        }else
-        {
-            chatMessage.setType(ChatMessage.MessageType.REJECT);
-            chatMessage.setSender("Bạn không có quyền truy cập !!");
-        }
+//        if(chatMessage.getSender().equals("quang")||chatMessage.getSender().equals("thong"))
+//        {
+//            if(!chatMessage.getPassword().equals("123"))
+//            {
+//                chatMessage.setType(ChatMessage.MessageType.REJECT);
+//                chatMessage.setSender("Tài khoản hoặc mật khẩu không chính xác!!");
+//            }
+//        }else
+//        {
+//            chatMessage.setType(ChatMessage.MessageType.REJECT);
+//            chatMessage.setSender("Bạn không có quyền truy cập !!");
+//        }
         return chatMessage;
     }
 
