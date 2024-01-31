@@ -7,11 +7,13 @@ public class ChatMessage {
     private MessageType type;
     private String content;
     private String sender;
+    private String password;
 
     public enum MessageType {
         CHAT,
         JOIN,
-        LEAVE
+        LEAVE,
+        REJECT
     }
 
     public MessageType getType() {
@@ -36,5 +38,13 @@ public class ChatMessage {
 
     public void setSender(String sender) {
         this.sender = sender;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

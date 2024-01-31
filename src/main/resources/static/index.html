@@ -2,7 +2,7 @@
 <html>
   <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-      <title>Spring Boot WebSocket Chat Application | CalliCoder</title>
+      <title>Nguyễn Thiện Quang</title>
       <link rel="stylesheet" href="/css/main.css" />
   </head>
   <body>
@@ -12,13 +12,17 @@
 
     <div id="username-page">
         <div class="username-page-container">
-            <h1 class="title">Type your username</h1>
+            <h1 class="title">Đăng nhập</h1>
             <form id="usernameForm" name="usernameForm">
                 <div class="form-group">
-                    <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />
+                    <input type="text" id="name" placeholder="Tên đăng nhập" autocomplete="off" required class="form-control" />
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="accent username-submit">Start Chatting</button>
+                    <input type="password" id="password" placeholder="Mật khẩu"  autocomplete="off" class="form-control" required />
+                </div>
+                <h3 id="messageError" style="color: #ff4743;"></h3>
+                <div class="form-group">
+                    <button type="submit" class="accent username-submit">Login</button>
                 </div>
             </form>
         </div>
@@ -27,7 +31,7 @@
     <div id="chat-page" class="hidden">
         <div class="chat-container">
             <div class="chat-header">
-                <h2>Spring WebSocket Chat Demo</h2>
+                <h2>Kênh chat nội bộ</h2>
             </div>
             <div class="connecting">
                 Connecting...
